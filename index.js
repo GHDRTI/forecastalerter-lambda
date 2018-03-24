@@ -6,7 +6,7 @@ exports.handler = (event, context, callback) => {
     var subject = event.Records[0].ses.mail.commonHeaders.subject; 
 
 
-    if (subject.toLowerCase() == 'subscribe'){
+    if (subject.toLowerCase().trim() == 'subscribe'){
 
     	var formData = {
 		  email: sender
@@ -23,7 +23,7 @@ exports.handler = (event, context, callback) => {
 
 		});
 
-    } else if (subject.toLowerCase() == 'unsubscribe'){
+    } else if (subject.toLowerCase().trim() == 'unsubscribe'){
 
     	var formData = {
 		  email: sender
@@ -41,7 +41,7 @@ exports.handler = (event, context, callback) => {
 		});
 
     } else {
-    	console.log('unsupported function:' + subject); 
+    	console.log('unsupported function: ' + subject); 
     }
  
     callback(null);
